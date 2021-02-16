@@ -3,14 +3,37 @@ import java.util.Scanner;
 
 public class Main{
     public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+
+        double principal = getInput(scanner, "Principal: ", 1_000, 1_000_000);
+        double annualInterestRate = getInput(scanner, "Annual Interest Rate: ", 0, 30);
+        int period = (int)getInput(scanner, "Duration(years): ", 0, 30);
+
+        double mortgage = calculateMortgage(principal, annualInterestRate, period);
+
+        String formattedMortgage = NumberFormat.getCurrencyInstance().format(mortgage);
+        System.out.print("Mortgage payment: " + formattedMortgage + "\n");
+        scanner.close();
+    }
+
+    public static double getInput(Scanner scanner, String prompt, int min, int  max){ 
+        double input;
+        
+        while(true){
+            System.out.print(prompt);
+            input = scanner.nextDouble();
+            if(input > min && input < max){
+                break;
+            }
+            System.out.println("Value must be between " + min + "and " + max);
+        }
+
+        return input;
+    }
+
+    public static double calculateMortgage(double principal, double annualInterestRate, int period){
         final byte MONTHS_IN_YEAR = 12;
         final byte PERCENT = 100;
-
-        Scanner scanner = new Scanner(System.in);
-        double principal = getPrincipal(scanner, 0);
-        float annualInterestRate = getAnnual(scanner, 0);
-        byte period = getPeriod(scanner);
-        scanner.close();
 
         double numberPayments = period * 12;
         double monthlyInterestRate = annualInterestRate / MONTHS_IN_YEAR / PERCENT;
@@ -19,36 +42,6 @@ public class Main{
                             * (monthlyInterestRate * Math.pow(1 + monthlyInterestRate, numberPayments)  
                             / (Math.pow(1 + monthlyInterestRate, numberPayments) - 1));
 
-        String formattedMortgage = NumberFormat.getCurrencyInstance().format(mortgage);
-        System.out.print("Mortgage payment: " + formattedMortgage + "\n");
-
-    }
-
-    public static double getPrincipal(Scanner scanner, double principal){
-        do{
-            System.out.print("Principal loan amount(1k-1mil): $");
-            principal = scanner.nextDouble();
-        } while(principal > 1000000 && principal < 1000);
-        
-        return principal;
-    }
-
-    public static float getAnnual(Scanner scanner, float annual){
-        do{
-            System.out.print("Annual interest rate(0-30%): ");
-            annual = scanner.nextFloat();
-        } while(annual > 30 && annual < 10);
-        
-        return annual;
-    }
-
-    public static byte getPeriod(Scanner scanner){
-        byte period;
-        do{
-            System.out.print("Payment period(years, 0-30): ");
-            period = scanner.nextByte();
-        } while(period > 30 && period < 0);
-        
-        return period;
+        return mortgage;
     }
 }
