@@ -3,6 +3,8 @@ import java.util.Scanner;
 
 public class Main{
     public static void main(String[] args){
+        final byte MONTHS_IN_YEAR = 12;
+        final byte PERCENT = 100;
         Scanner scanner = new Scanner(System.in);
         System.out.print("Principal loan amount: $");
         double principal = scanner.nextDouble();
@@ -14,7 +16,7 @@ public class Main{
         scanner.close();
 
         double numberPayments = period * 12;
-        double monthlyInterestRate = (annualInterestRate / 12) / 100;
+        double monthlyInterestRate = annualInterestRate / MONTHS_IN_YEAR / PERCENT;
 
         double mortgage = principal * (monthlyInterestRate * Math.pow(1 + monthlyInterestRate, numberPayments) / 
                             (Math.pow(1 + monthlyInterestRate, numberPayments) - 1));
