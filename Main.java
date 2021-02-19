@@ -3,6 +3,8 @@ import java.util.Scanner;
 
 public class Main{
     public static void main(String[] args){
+        testSuperArray();
+
         final byte MONTHS_IN_YEAR = 12;
         final byte PERCENT = 100;
         Scanner scanner = new Scanner(System.in);
@@ -14,8 +16,7 @@ public class Main{
         int numberPayments = period * 12;
         double monthlyInterestRate = annualInterestRate / MONTHS_IN_YEAR / PERCENT;
 
-        printMortgageDetails(principal, monthlyInterestRate, numberPayments);
-        
+        printMortgageDetails(principal, monthlyInterestRate, numberPayments);   
         scanner.close();
     }
 
@@ -41,7 +42,6 @@ public class Main{
             System.out.println(formattedBalance);
             paymentsMade++;
         }
-
     }
 
     public static double getInput(Scanner scanner, String prompt, int min, int  max){ 
@@ -66,5 +66,16 @@ public class Main{
                             / (Math.pow(1 + monthlyInterestRate, numberPayments) - 1));
 
         return mortgage;
+    }
+
+    public static void testSuperArray(){
+        SuperArray superArray = new SuperArray(4);
+        superArray.insert(10);
+        superArray.insert(20);
+        superArray.insert(30);
+        superArray.insert(40);
+        superArray.removeAt(0);
+        superArray.removeAt(2);
+        superArray.indexOf(1);
     }
 }
