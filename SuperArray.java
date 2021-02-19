@@ -10,6 +10,19 @@ public class SuperArray {
         this.capacity = length;
     }
 
+    public void insert(int value){
+        if(array.length == count){
+            int[] tempArray = new int[count * 2];
+            
+            for (int i = 0; i < count; i++)
+                tempArray[i] = array[i];
+    
+            array = tempArray;
+        }
 
+        array[count++] = value;
+    }
+
+    
     
 }
