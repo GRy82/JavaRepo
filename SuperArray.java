@@ -23,6 +23,16 @@ public class SuperArray {
         array[count++] = value;
     }
 
+    public void removeAt(int removalIndex){
+        if(removalIndex < 0 || removalIndex >= count)
+            throw new IllegalArgumentException();  
+
+        for(int i = removalIndex; i < count; i++)
+            array[i] = array[i+1];
+
+        count--;
+    }
+
     
     
 }
