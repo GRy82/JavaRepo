@@ -13,6 +13,7 @@ public class LinkedList {
 
     private Node last;
     private Node first;
+    private int size;
 
     //add first
     public void addFirst(int newValue){
@@ -24,6 +25,8 @@ public class LinkedList {
             newNode.next = first;
             first = newNode;
         }
+
+        size++;
     }
 
     public void addLast(int newValue){
@@ -35,33 +38,37 @@ public class LinkedList {
             last.next = newNode;
             last = newNode;
         }
+
+        size++;
     }
 
     public void deleteFirst(){
         if (first == null)
             throw new NoSuchElementException();
 
-        if(first == last){
+        if(first == last)
             first = last = null;
-            return;
+        else{
+            var second = first.next;
+            first.next = null;
+            first = second;
         }
 
-        var second = first.next;
-        first.next = null;
-        first = second;
+        size--;
     }
 
     public void deleteLast(){
         if(first == null) throw new NoSuchElementException();
 
-        if (first == last){
+        if (first == last)
             first = last = null;
-            return;
+        else{
+            var previous = getPrevious(last);
+            last = previous;
+            last.next = null;
         }
-        
-        var previous = getPrevious(last);
-        last = previous;
-        last.next = null;
+    
+        size--;
     }
 
     private Node getPrevious(Node node){
@@ -87,6 +94,10 @@ public class LinkedList {
             counter++;
         }
         return -1;
+    }
+
+    public int size(){
+        return size;
     }
 
     //add last
