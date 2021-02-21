@@ -160,7 +160,7 @@ public class LinkedList {
         if(traverserFast == last)
             System.out.println(traverserHalf.value);
         else
-            System.out.println(traverserHalf.value + "and " + traverserHalf.next.value)
+            System.out.println(traverserHalf.value + "and " + traverserHalf.next.value);
         
     }
 

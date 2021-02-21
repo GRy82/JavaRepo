@@ -69,6 +69,9 @@ public class Main{
         return mortgage;
     }
 
+    //-----------------------------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------------------------
+
     public static void testSuperArray(){
         SuperArray superArray = new SuperArray(4);
         superArray.insert(10);
@@ -94,4 +97,15 @@ public class Main{
         for (int item : array)
             System.out.println(item);
     }
+
+    public static void testStringReverser(){
+        String testString = "Hello there, chap.";
+        
+        StringReverser stringReverser = new StringReverser();
+        stringReverser.reverse(testString);
+    }
+
+    //-----------------------------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------------------------
+
 }
