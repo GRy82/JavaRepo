@@ -124,6 +124,26 @@ public class LinkedList {
         first = previous;
     }
 
+    public int getKthFromTheEnd(int K){
+        if (first == null)
+            throw new IllegalStateException();
+
+        var pointerA = first;
+        var pointerB = first;
+
+        for(int i = 0; i < K - 1; i++)
+            pointerB = pointerB.next;
+            if (pointerB == null)
+             throw new IllegalArgumentException();
+
+        while(pointerB != last){
+            pointerA = pointerA.next;
+            pointerB = pointerB.next;
+        } 
+
+        return pointerA.value;
+    }
+
     public int size(){
         return size;
     }
