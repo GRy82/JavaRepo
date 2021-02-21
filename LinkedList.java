@@ -144,6 +144,26 @@ public class LinkedList {
         return pointerA.value;
     }
 
+    public void printMiddle(){
+        if(first == null)
+            return;
+
+        Node traverserFast = first;
+        Node traverserHalf = first;
+        boolean unfinished = traverserFast == null || traverserFast.next == null;
+
+        while(unfinished){
+            traverserFast = traverserFast.next.next;
+            traverserHalf = traverserHalf.next;
+        }
+
+        if(traverserFast == last)
+            System.out.println(traverserHalf.value);
+        else
+            System.out.println(traverserHalf.value + "and " + traverserHalf.next.value)
+        
+    }
+
     public int size(){
         return size;
     }
