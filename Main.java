@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 public class Main{
     public static void main(String[] args){
+        testLinkedListReverse();
         testSuperArray();
 
         final byte MONTHS_IN_YEAR = 12;
@@ -77,5 +78,20 @@ public class Main{
         superArray.removeAt(0);
         superArray.removeAt(2);
         superArray.indexOf(1);
+    }
+
+    public static void testLinkedListReverse(){
+        LinkedList list = new LinkedList();
+        
+        list.addFirst(40);
+        list.addFirst(30);
+        list.addFirst(20);
+        list.addFirst(10);
+
+        list.reverse();
+        int[] array = list.toArray();
+
+        for (int item : array)
+            System.out.println(item);
     }
 }
