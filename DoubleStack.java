@@ -4,7 +4,7 @@ public class DoubleStack {
     private int limiter2;
 
     public void push1(){
-
+        
     }
 
     public void push2(){
@@ -28,9 +28,9 @@ public class DoubleStack {
     }
     
     public boolean isFull1(){
-
+        return limiter2 - limiter1 == 1;
     }
     public boolean isFull2(){
-
+        return limiter2 - limiter1 == 1;
     }
 }
