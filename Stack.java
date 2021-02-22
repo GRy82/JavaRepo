@@ -1,45 +1,38 @@
+import java.util.Arrays;
+
 public class Stack {
-    int[] stack;
-    int topElement;
-    int count;
+    private int[] stack;
+    private int count;
 
     public void push(int pushed){
-        if (count + 1 > stack.length){
-            int[] newArray = new int[stack.length * 2];
-            for (int i = 0; i < stack.length; i++){
-                newArray[i] = stack[i];
-            }
-            stack = newArray;
-        }
+        if (count == stack.length)
+            throw new StackOverflowError();
 
-        stack[count] = pushed;
-        topElement = pushed;
-        count++;
+        stack[count++] = pushed;
     }
     
     public int peek(){
-        if (isEmpty()) throw new IllegalArgumentException();
+        if (isEmpty()) throw new IllegalStateException();
 
-        return topElement;
+        return stack[count - 1];
     }
 
     public int pop(){
-        int top = peek();
+        if (isEmpty()) throw new IllegalStateException();
 
-        stack[count - 1] = 0;
-        count--;
-        topElement = stack[count - 1];
-
-        return top;
+        return stack[--count];
     }
 
     
     public boolean isEmpty(){
-        if (count == 0) return true;
-
-        return false;
+        return count == 0;
     }
     
+    @Override
+    public String toString(){
+        var content = Arrays.copyOfRange(stack, 0, count);
+        return Arrays.toString(content);
+    }
 
 
 }
