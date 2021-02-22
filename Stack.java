@@ -18,7 +18,9 @@ public class Stack {
     }
     
     public int peek(){
-
+        if (isEmpty()) throw new IllegalArgumentException();
+        
+        return topElement;
     }
 
     public int pop(){
