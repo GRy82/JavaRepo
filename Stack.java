@@ -12,7 +12,9 @@ public class Stack {
             stack = newArray;
         }
 
-        stack[++count] = pushed;
+        stack[count] = pushed;
+        topElement = pushed;
+        count++;
     }
     
     public int peek(){
