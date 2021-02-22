@@ -1,7 +1,7 @@
 import java.util.Arrays;
 
 public class Stack {
-    private int[] stack;
+    private int[] stack = new int[5];
     private int count;
 
     public void push(int pushed){
