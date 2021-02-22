@@ -19,7 +19,7 @@ public class Stack {
     
     public int peek(){
         if (isEmpty()) throw new IllegalArgumentException();
-        
+
         return topElement;
     }
 
@@ -29,7 +29,9 @@ public class Stack {
 
     
     public boolean isEmpty(){
+        if (count == 0) return true;
 
+        return false;
     }
     
 
