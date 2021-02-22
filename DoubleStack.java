@@ -16,11 +16,15 @@ public class DoubleStack {
     }
 
     public int pop1(){
+        if (isEmpty1()) throw new IllegalStateException();
 
+        return stack[--limiter1];
     }
 
     public int pop2(){
+        if (isEmpty2()) throw new IllegalStateException();
 
+        return stack[++limiter2];
     }
 
     public boolean isEmpty1(){
@@ -28,13 +32,13 @@ public class DoubleStack {
     }
 
     public boolean isEmpty2(){
-        return limiter2 == 0;
+        return limiter2 == stack.length - 1;
     }
     
     public boolean isFull1(){
-        return limiter2 - limiter1 == 1;
+        return limiter2 <= limiter1;
     }
     public boolean isFull2(){
-        return limiter2 - limiter1 == 1;
+        return limiter2 <= limiter1;
     }
 }
