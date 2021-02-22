@@ -24,7 +24,13 @@ public class Stack {
     }
 
     public int pop(){
+        int top = peek();
 
+        stack[count - 1] = 0;
+        count--;
+        topElement = stack[count - 1];
+
+        return top;
     }
 
     
