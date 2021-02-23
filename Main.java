@@ -3,8 +3,10 @@ import java.util.ArrayDeque;
 import java.util.Queue;
 import java.util.Scanner;
 
+
 public class Main{
     public static void main(String[] args){
+        testQueueEnqueue();
         testQueueReverse();
         testLinkedListReverse();
         testSuperArray();
@@ -116,6 +118,17 @@ public class Main{
         Queue<Integer> newQueue = QueueReverser.reverse(queue);
         System.out.println(queue);
         System.out.println(newQueue);
+    }
+
+    public static void testQueueEnqueue(){
+        ArrayQueue queue = new ArrayQueue(5);
+        queue.enqueue(10);
+        queue.enqueue(20);
+        queue.enqueue(30);
+        int dequeued = queue.dequeue();
+        
+        System.out.println(dequeued);
+        System.out.println(queue);
     }
 
     //-----------------------------------------------------------------------------------------------------
