@@ -5,20 +5,34 @@ public class QueueOfStacks {
     Stack<Integer> dequeueStack = new Stack<>();
 
     public void enqueue(int enqueued){
-        while(!dequeueStack.isEmpty())
-            enqueueStack.push(dequeueStack.pop());
-        
         enqueueStack.push(enqueued);
     }
 
     public int dequeue(){
-        if (enqueueStack.isEmpty())
+        if (isEmpty())
             throw new IllegalStateException();
         
-        while(!enqueueStack.isEmpty())
-            dequeueStack.push(enqueueStack.pop());
+        stackTransfer();
 
        return dequeueStack.pop();
+    }
+
+    public boolean isEmpty(){
+        return enqueueStack.isEmpty() && dequeueStack.isEmpty();
+    }
+
+    public int peek(){
+        if (isEmpty()) throw new IllegalStateException();
+
+        stackTransfer();
+        
+        return dequeueStack.peek();
+    }
+
+    private void stackTransfer(){
+        if(dequeueStack.isEmpty())
+            while(!enqueueStack.isEmpty())
+                dequeueStack.push(enqueueStack.pop());
     }
 
 }
