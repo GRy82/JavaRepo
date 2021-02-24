@@ -15,4 +15,20 @@ public class QueueReverser {
 
         return reversed;
     }
+
+    public static Queue<Integer> reverse(Queue<Integer> queue, int k){
+        Stack<Integer> reverser = new Stack<>();
+
+        int counter = 1;
+        while(counter <= k)
+            reverser.push(queue.remove());
+
+        while(!reverser.isEmpty())
+            queue.add(reverser.pop());
+
+        for(int i = 0; i < queue.size() - k; i++)
+            queue.add(queue.remove());
+        
+        return queue;
+    }
 }
