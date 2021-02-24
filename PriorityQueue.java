@@ -5,7 +5,7 @@ public class PriorityQueue {
     private int count;
 
     public void add(int newElement){
-        if (count == queue.length){
+        if (isFull()){
             int[] array = new int[queue.length * 2];
             for(int j = 0; j <= queue.length; j++)
                 array[j] = queue[j];
@@ -13,6 +13,13 @@ public class PriorityQueue {
             queue = array;
         }
 
+        int index = shiftItemsAndInsert(newElement);
+
+        queue[index] = newElement;
+        count++;     
+    } 
+
+    public int shiftItemsAndInsert(int newElement){
         int i;
         for(i = count - 1; i >= 0; i--){
             if(queue[i] > newElement)
@@ -21,9 +28,8 @@ public class PriorityQueue {
                 break;
         }
 
-        queue[i+1] = newElement;
-        count++;     
-    } 
+        return i + 1;
+    }
 
     public int remove(){
         if(isEmpty())
@@ -36,6 +42,10 @@ public class PriorityQueue {
         return count == 0;
     }
     
+    public boolean isFull(){
+        return count == queue.length;
+    }
+
     @Override
     public String toString(){
         return Arrays.toString(queue);
