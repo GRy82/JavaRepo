@@ -23,6 +23,32 @@ public class LinkedListQueue {
         first = enqueuedNode;
     }
 
+    public int dequeue(){ //O(n)
+        if(isEmpty()) throw new IllegalStateException();
+
+        int dequeuedValue;
+
+        if(first == last){
+            dequeuedValue = last.value;
+            first = last = null;
+        }
+        else{
+            Node probe = first;
+            while(probe.next != last)
+                probe = probe.next;
+    
+            dequeuedValue = last.value;
+            last = probe;
+            last.next = null;
+        }
+
+        return dequeuedValue;
+    }
+
+    public int peek(){
+        return last.value;
+    }
+
     public boolean isEmpty(){
         return first == null;
     }
