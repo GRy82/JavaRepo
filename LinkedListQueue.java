@@ -1,6 +1,7 @@
+
 public class LinkedListQueue {
-    private Node first;
-    private Node last;
+    private Node head;
+    private Node tail;
     private int size;
 
     private class Node{
@@ -15,12 +16,13 @@ public class LinkedListQueue {
     public void enqueue(int value){//O(1)
         Node enqueuedNode = new Node(value);
 
-        if(!isEmpty())
-            enqueuedNode.next = first;
-        else
-            last = enqueuedNode;
+        if(isEmpty())
+            head = tail = enqueuedNode;
+        else{
+            tail.next = enqueuedNode;
+            tail = enqueuedNode;
+        }
         
-        first = enqueuedNode;
         size++;
     }
 
@@ -29,33 +31,32 @@ public class LinkedListQueue {
 
         int dequeuedValue;
 
-        if(first == last){
-            dequeuedValue = last.value;
-            first = last = null;
+        if(head == tail){
+            dequeuedValue = head.value;
+            head = tail = null;
         }
         else{
-            Node probe = first;
-            while(probe.next != last)
-                probe = probe.next;
-    
-            dequeuedValue = last.value;
-            last = probe;
-            last.next = null;
+            Node dequeuedNode = head;
+            dequeuedValue = dequeuedNode.value;
+            head = dequeuedNode.next;
+            dequeuedNode.next = null;
         }
 
         size--;
         return dequeuedValue;
     }
 
-    public int peek(){
-        return last.value;
+    public int peek(){ //O(1)
+        if (isEmpty()) throw new IllegalStateException();
+
+        return head.value;
     }
 
-    public boolean isEmpty(){
-        return first == null;
+    public boolean isEmpty(){ //O(1)
+        return head == null;
     }
 
-    public int size(){
+    public int size(){ //O(1)
         return size;
     }
     
