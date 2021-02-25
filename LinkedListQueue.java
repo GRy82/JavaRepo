@@ -21,6 +21,7 @@ public class LinkedListQueue {
             last = enqueuedNode;
         
         first = enqueuedNode;
+        size++;
     }
 
     public int dequeue(){ //O(n)
@@ -42,6 +43,7 @@ public class LinkedListQueue {
             last.next = null;
         }
 
+        size--;
         return dequeuedValue;
     }
 
@@ -51,6 +53,10 @@ public class LinkedListQueue {
 
     public boolean isEmpty(){
         return first == null;
+    }
+
+    public int size(){
+        return size;
     }
     
 }
