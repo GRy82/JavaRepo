@@ -12,8 +12,15 @@ public class LinkedListQueue {
         }
     }
 
-    public void enqueue(int value){
-    
+    public void enqueue(int value){//O(1)
+        Node enqueuedNode = new Node(value);
+
+        if(!isEmpty())
+            enqueuedNode.next = first;
+        else
+            last = enqueuedNode;
+        
+        first = enqueuedNode;
     }
 
     public boolean isEmpty(){
