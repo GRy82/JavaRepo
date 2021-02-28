@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 public class Main{
     public static void main(String[] args){
+        testCountPairsWithDiffs();
         testQueueEnqueue();
         testQueueReverse();
         testSuperArray();
@@ -75,6 +76,13 @@ public class Main{
 
     //-----------------------------------------------------------------------------------------------------
     //-----------------------------------------------------------------------------------------------------
+
+    public static void testCountPairsWithDiffs(){
+        int[] nums = new int[]{ 1, 7, 5, 9, 2, 12, 3};
+       HashTableExercises hashTableExercises = new HashTableExercises();
+       int numberOfPairs = hashTableExercises.countPairsWithDiff(nums);
+       System.out.println(numberOfPairs);
+    }
 
     public static void testSuperArray(){
         SuperArray superArray = new SuperArray(4);

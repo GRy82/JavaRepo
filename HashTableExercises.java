@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.HashSet;
 
 public class HashTableExercises {
     public int mostRepeated(int[] arrayOfInts){
@@ -19,5 +20,20 @@ public class HashTableExercises {
         }
 
         return mostRepeated;     
+    }
+
+    public int countPairsWithDiff(int[] arrayOfInts){
+        HashSet<Integer> setOfInts = new HashSet<>();
+
+        for (var number : arrayOfInts)
+            setOfInts.add(number);
+
+        int diffTwoFreq = 0;
+
+        for(var number : arrayOfInts)
+            if(setOfInts.contains(number - 2))
+                diffTwoFreq++;
+
+        return diffTwoFreq;
     }
 }
