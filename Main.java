@@ -5,7 +5,8 @@ import java.util.Scanner;
 
 
 public class Main{
-    public static void main(String[] args){
+    public static void main(String[] args) {
+        testTwoSum();
         testCountPairsWithDiffs();
         testQueueEnqueue();
         testQueueReverse();
@@ -17,32 +18,33 @@ public class Main{
 
         double principal = getInput(scanner, "Principal: ", 1_000, 1_000_000);
         double annualInterestRate = getInput(scanner, "Annual Interest Rate: ", 0, 30);
-        int period = (int)getInput(scanner, "Duration(years): ", 0, 30);
+        int period = (int) getInput(scanner, "Duration(years): ", 0, 30);
 
         int numberPayments = period * 12;
         double monthlyInterestRate = annualInterestRate / MONTHS_IN_YEAR / PERCENT;
 
-        printMortgageDetails(principal, monthlyInterestRate, numberPayments);   
+        printMortgageDetails(principal, monthlyInterestRate, numberPayments);
         scanner.close();
     }
 
-    public static double getBalance(double principal, double monthlyInterestRate, int totalPayments, byte paymentsMade){
+    public static double getBalance(double principal, double monthlyInterestRate, int totalPayments,
+            byte paymentsMade) {
         double balance = principal
-                        * (Math.pow(1 + monthlyInterestRate, totalPayments) - Math.pow(1 + monthlyInterestRate, paymentsMade))
-                        / (Math.pow(1 + monthlyInterestRate, totalPayments) - 1);
+                * (Math.pow(1 + monthlyInterestRate, totalPayments) - Math.pow(1 + monthlyInterestRate, paymentsMade))
+                / (Math.pow(1 + monthlyInterestRate, totalPayments) - 1);
 
         return balance;
     }
 
-    public static void printMortgageDetails(double principal, double monthlyInterestRate, int numberPayments){
+    public static void printMortgageDetails(double principal, double monthlyInterestRate, int numberPayments) {
         double mortgage = calculateMortgage(principal, monthlyInterestRate, numberPayments);
         String formattedMortgage = NumberFormat.getCurrencyInstance().format(mortgage);
         System.out.println("\nMORTGAGE\n-------");
         System.out.println("Monthly payment: " + formattedMortgage + "\n");
         System.out.println("Balance by month:\n----------------");
-        double balance; 
+        double balance;
         byte paymentsMade = 0;
-        for(int i = 0; i <= numberPayments; i++){
+        for (int i = 0; i <= numberPayments; i++) {
             balance = getBalance(principal, monthlyInterestRate, numberPayments, paymentsMade);
             String formattedBalance = NumberFormat.getCurrencyInstance().format(balance);
             System.out.println(formattedBalance);
@@ -50,13 +52,13 @@ public class Main{
         }
     }
 
-    public static double getInput(Scanner scanner, String prompt, int min, int  max){ 
+    public static double getInput(Scanner scanner, String prompt, int min, int max) {
         double input;
-        
-        while(true){
+
+        while (true) {
             System.out.print(prompt);
             input = scanner.nextDouble();
-            if(input > min && input < max){
+            if (input > min && input < max) {
                 break;
             }
             System.out.println("Value must be between " + min + "and " + max);
@@ -65,23 +67,30 @@ public class Main{
         return input;
     }
 
-    public static double calculateMortgage(double principal, double monthlyInterestRate, int numberPayments){
+    public static double calculateMortgage(double principal, double monthlyInterestRate, int numberPayments) {
 
-        double mortgage = principal
-                            * (monthlyInterestRate * Math.pow(1 + monthlyInterestRate, numberPayments)  
-                            / (Math.pow(1 + monthlyInterestRate, numberPayments) - 1));
+        double mortgage = principal * (monthlyInterestRate * Math.pow(1 + monthlyInterestRate, numberPayments)
+                / (Math.pow(1 + monthlyInterestRate, numberPayments) - 1));
 
         return mortgage;
     }
 
-    //-----------------------------------------------------------------------------------------------------
-    //-----------------------------------------------------------------------------------------------------
+    // -----------------------------------------------------------------------------------------------------
+    // -----------------------------------------------------------------------------------------------------
 
-    public static void testCountPairsWithDiffs(){
-        int[] nums = new int[]{ 1, 7, 5, 9, 2, 12, 3};
-       HashTableExercises hashTableExercises = new HashTableExercises();
-       int numberOfPairs = hashTableExercises.countPairsWithDiff(nums);
-       System.out.println(numberOfPairs);
+    public static void testTwoSum(){
+        int[] collection = new int[]{ 2, 7, 11, 15 };
+        int targetSum = 9;
+        HashTableExercises hashTableExercises = new HashTableExercises();
+        int[] partsOfTarget = hashTableExercises.twoSum(targetSum, collection);
+        System.out.println(partsOfTarget[0] + " + " + partsOfTarget[1]);
+    }
+
+    public static void testCountPairsWithDiffs() {
+        int[] nums = new int[] { 1, 7, 5, 9, 2, 12, 3 };
+        HashTableExercises hashTableExercises = new HashTableExercises();
+        int numberOfPairs = hashTableExercises.countPairsWithDiff(nums);
+        System.out.println(numberOfPairs);
     }
 
     public static void testSuperArray(){

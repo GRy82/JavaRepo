@@ -36,4 +36,19 @@ public class HashTableExercises {
 
         return diffTwoFreq;
     }
+
+    public int[] twoSum(int targetSum, int[] collection){
+        HashSet<Integer> set = new HashSet<>();
+        for (var number: collection)
+            set.add(number);
+
+        for(var number : collection){
+            var other = set.contains(targetSum - number) ? targetSum - number : null;
+            if(other != null && other != number)
+                return new int[] {other, number};
+        }
+
+        return null;
+    }
+
 }
